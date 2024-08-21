@@ -7,23 +7,37 @@
   <title>Document</title>
 
   <script src="./main.js"></script>
-  <button id="print">PRINT</button>
+  <button id="print">impresoras</button>
+  <button id="probar">probar impresora</button>
 </head>
 
 <body>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const button = document.getElementById("print");
-      if (button) {
+    document.addEventListener("DOMContentLoaded", async () => {
+      const getprints = document.getElementById("print");
+      const print = document.getElementById("probar");
+
+      if (getprints) {
         button.addEventListener("click", () => {
           ConectorPluginV3.obtenerImpresoras()
             .then(impresoras => {
-              alert(JSON.stringify(impresoras))
+              alert(JSON.stringify())
 
             });
         })
       }
+      if (print) {
+        const nombreImpresora = "BlueTooth Printer";
+        const conector = new ConectorPluginV3();
+        const respuesta = await conector
+          .Iniciar()
+          .EscribirTexto("Hola mundo")
+          .Feed(1)
+          .imprimirEn(nombreImpresora);
+      }
+
+
     })
 
   </script>
