@@ -7,38 +7,40 @@
   <title>Document</title>
 
   <script src="./main.js"></script>
-  <button id="print">impresoras</button>
-  <button id="probar">probar impresora</button>
+
 </head>
 
 <body>
+  <button id="print">impresoras</button>
+  <button id="probar">probar impresora</button>
 
   <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const getprints = document.getElementById("print");
-      const print = document.getElementById("probar");
 
-      if (getprints) {
-        button.addEventListener("click", () => {
-          ConectorPluginV3.obtenerImpresoras()
-            .then(impresoras => {
-              alert(JSON.stringify())
-
-            });
-        })
-      }
-      if (print) {
-        const nombreImpresora = "BlueTooth Printer";
-        const conector = new ConectorPluginV3();
-        const respuesta = await conector
-          .Iniciar()
-          .EscribirTexto("Hola mundo")
-          .Feed(1)
-          .imprimirEn(nombreImpresora);
-      }
+    const getprints = document.getElementById("print");
+    const print = document.getElementById("probar");
 
 
+    getprints.addEventListener("click", () => {
+
+      ConectorPluginV3.obtenerImpresoras()
+        .then(impresoras => {
+          alert(JSON.stringify(impresoras))
+
+        });
     })
+
+    print.addEventListener("click", async () => {
+      const nombreImpresora = "BlueTooth Printer";
+      const conector = new ConectorPluginV3();
+      const respuesta = await conector
+        .Iniciar()
+        .EscribirTexto("Hola mundo")
+        .Feed(1)
+        .imprimirEn(nombreImpresora);
+    })
+
+
+
 
   </script>
 </body>
