@@ -408,7 +408,7 @@ const ConectorPluginV3 = (() => {
       const payload = {
         operaciones: this.operaciones,
         nombreImpresora,
-        serial: this.serial,
+        serial: "66:32:83:DA:AF:08",
       };
       const response = await fetch(this.ruta + "/imprimir", {
         method: "POST",
